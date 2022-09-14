@@ -1,26 +1,54 @@
-#include <stdio.h>
+#include "main.h"
 
 /**
- * main - list all natural numbers multiples of 3 & 5
+ * print_times_table - prints the times table
+ * @n: integer for which the times table will be printed
  *
- * Return: Always 0.
+ * Description: prints the times table
+ *
+ * Return: void
  */
 
-int main(void)
+void print_times_table(int n)
 {
-	int num, sum;
+	int row, column, product;
 
-	sum = 0;
-
-	for (num = 0; num < 1024; num++)
+	if (n >= 0 && n < 15)
 	{
-		if (num % 3 == 0 || num % 5 == 0)
+		for (row = 0; row <= n; row++)
 		{
-			sum += num;
+			for (column = 0; column <= n; column++)
+			{
+				product = row * column;
+
+				if (column == 0)
+					_putchar('0');
+				else if (product < 10)
+				{
+					_putchar(',');
+					_putchar(' ');
+					_putchar(' ');
+					_putchar(' ');
+					_putchar(product % 10 + '0');
+				}
+				else if (product >= 10 && product < 100)
+				{
+					_putchar(',');
+					_putchar(' ');
+					_putchar(' ');
+					_putchar((product / 10) % 10 + '0');
+					_putchar(product % 10 + '0');
+				}
+				else if (product > 99 && product < 1000)
+				{
+					_putchar(',');
+					_putchar(' ');
+					_putchar(product / 100 + '0');
+					_putchar((product / 10) % 10 + '0');
+					_putchar(product % 10 + '0');
+				}
+			}
+			_putchar('\n');
 		}
 	}
-
-	printf("%d\n", sum);
-
-	return (0);
 }
