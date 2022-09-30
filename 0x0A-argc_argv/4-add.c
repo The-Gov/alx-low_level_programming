@@ -1,63 +1,28 @@
-#include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <ctype.h>
 /**
- * is_number - checks to see if input is a number
- * @s: input to check for numberhood
- * Return: 1 if it is a number, 0 if not
- */
-
-int is_number(char *s)
-{
-	int i;
-
-	i = 0;
-	while (*(s + i) != '\0')
-	{
-		if (*(s + i) >= '0' && *(s + i) <= '9')
-		{
-			i++;
-		}
-		else
-		{
-			return (0);
-		}
-	}
-	return (1);
-}
-
-/**
- * main - prints the sum of positive numbers
- * @argc: number of arguments
- * @argv: array of arguments
- * Return: (0)
- */
-
+ * main - adds positive integers.
+ * @argc: number of command line arguments
+ * @argv: arrays of the command line arguments.
+ * Return: 0 success.
+ **/
 int main(int argc, char *argv[])
 {
-	int i, sum, is_num;
+	int i, j, add = 0;
 
-	sum = 0;
-	if (argc == 1)
+	for (i = 1; i < argc; i++)
 	{
-		printf("0\n");
-	}
-	else if (argc > 1)
-	{
-		i = 1;
-		while (i < argc)
+		for (j = 0; argv[i][j] != '\0'; j++)
 		{
-			is_num = is_number(argv[i]);
-			if (is_num == 1)
-			{
-				sum += atoi(argv[i]);
-			}
-			else
+			if (!isdigit(argv[i][j]))
 			{
 				printf("Error\n");
 				return (1);
 			}
-			i++;
 		}
-
+		add += atoi(argv[i]);
+	}
+	printf("%d\n", add);
+	return (0);
+}
